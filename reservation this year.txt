@@ -1,6 +1,0 @@
-  
-  SELECT day(date_resa),an,mois,COUNT(*),SUM(montantHT),SUM(nb_jour)
-  FROM [RENTWAY_ALSYS].[dbo].[LAAB_000_RESERVATION]
-  where YEAR(creation_date)=2025 
-  group by an,mois,day(date_resa)
-   order by an,mois,day(date_resa)

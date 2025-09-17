@@ -21,14 +21,14 @@ const ca_reservation = async (req, res) => {
         WHEN 11 THEN 'Nov ' + CAST(an AS VARCHAR(4))
         WHEN 12 THEN 'Déc ' + CAST(an AS VARCHAR(4))
         END as mois,
-           -- COUNT(*) as nbr_reservation,
-            SUM(montantHT) as mt_ht
-           -- SUM(nb_jour) as nbr_jours
+            COUNT(*) as reservation
+          --SUM(montantHT) as mt_ht
+          -- SUM(nb_jour) as nbr_jours
         FROM [RENTWAY_ALSYS].[dbo].[LAAB_000_RESERVATION]
         WHERE YEAR(creation_date) >= (YEAR(GETDATE())-1) and  YEAR(creation_date) < (YEAR(GETDATE())+1)
         GROUP BY an, mois
         ORDER BY an, moisnum;
-   `);
+    `);
     res.json(result.recordset);
   } catch (error) {
     res.status(500).send(error.message);
